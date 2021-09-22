@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  padding: 10px;
+}
+.wrapper{
+  margin: 100px auto;
+  max-width: 1100px;
+}
+.wrapper nav{
+  display: flex;
+  justify-content: center;
+}
+.wrapper .items{
+  display: flex;
+ 
+  justify-content: space-between;
+}
+.items span{
+  padding: 7px 25px;
+  font-size: 15px;
+  font-weight: 500;
+ 
+}
+
+
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.gallery .image{
+  width: calc(100% / 4);
+  padding: 7px;
+}
+.gallery .image span{
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+.gallery .image img{
+  width: 100%;
+  vertical-align: middle;
+  transition: all 0.3s ease;
+}
+.gallery .image:hover img{
+  transform: scale(1.1);
+}
+.gallery .image.hide{
+  display: none;
+}
+.gallery .image.show{
+  animation: animate 0.4s ease;
+}
+.items span:hover{
+    color: red;
+    transition: 0.75s;
+}
+.actives{
+    color: red;
+}
+@keyframes animate {
+  0%{
+    transform: scale(0.5);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+</style>
+
+
+<body>
+
+
+    <div class="wrapper">
+        <!-- filter Items -->
+        <nav>
+          <div class="items">
+            <span class="item active actives" data-name="all" >ALL VEHICLES</span>
+            <span class="item" data-name="bgg">PASSENGER VEHICLES</span>
+            <span class="item" data-name="hee">SUVS & CROSSOVERS</span>
+            <span class="item" data-name="wtt">COMMERCIAL VEHICLES</span>
+         
+          </div>
+        </nav>
+        <!-- filter Images -->
+        <div class="gallery">
+          <div class="image" data-name="hee"><span><img src="img/Juke-21.jpg.ximg.l_3_m.smart.jpg" alt="" ></span></div>        
+          <div class="image" data-name="hee"><span><img src="img/Patrol-2020.jpg.ximg.l_3_m.smart.jpg" alt=""></span></div>          
+          <div class="image" data-name="wtt"><span><img src="img/pickup-eg-dc.jpg.ximg.l_3_m.smart.jpg" alt=""></span></div>
+          <div class="image" data-name="wtt"><span><img src="img/pickup-eg.jpg.ximg.l_3_m.smart.jpg" alt=""></span></div>
+          <div class="image" data-name="bgg"><span><img src="img/side-new.jpg.ximg.l_3_m.smart.jpg" alt=""></span></div>
+          <div class="image" data-name="bgg"><span><img src="img/Sentra-old.jpg.ximg.l_3_m.smart.jpg" alt=""></span></div>
+          <div class="image" data-name="bgg"><span><img src="img/Sunny.jpg.ximg.l_3_m.smart.jpg" alt=""></span></div>
+          <div class="image" data-name="wtt"><span><img src="img/Urvan2.jpg.ximg.l_3_m.smart.jpg" alt=""></span></div>
+        </div>
+
+       
+      
+
+ <script>
+
+      
+     
+      const filterItem = document.querySelector(".items");
+      const filterImg = document.querySelectorAll(".gallery .image");
+      
+      window.onload = ()=>{ 
+        filterItem.onclick = (selectedItem)=>{ 
+
+          if(selectedItem.target.classList.contains("item")){ 
+
+            filterItem.querySelector(".active").classList.remove("active"); 
+            selectedItem.target.classList.add("active"); 
+
+            let filterName = selectedItem.target.getAttribute("data-name"); 
+
+            filterImg.forEach((image) => {
+              let filterImges = image.getAttribute("data-name"); 
+
+              if((filterImges == filterName) || (filterName == "all")){
+
+                image.classList.remove("hide");
+                image.classList.add("show"); 
+
+
+              }else{
+                  
+                image.classList.add("hide"); 
+                image.classList.remove("show"); 
+              }
+            });
+          }
+        }
+      }
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
